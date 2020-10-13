@@ -133,9 +133,12 @@ set( CONF "
 ${CONF}" )
 file( WRITE ${C}/opensslconf.h.cmake "${CONF}" )
 
-configure_file( ${CMAKE_CURRENT_BINARY_DIR}/opensslconf.h.cmake
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/opensslconf.h.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/include/openssl/opensslconf.h )
 # End configure public headers
 
 add_subdirectory(crypto)
 add_subdirectory(ssl)
+
+INSTALL(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION include/openssl/ FILES_MATCHING PATTERN "*.h")
+#set_property(TARGET trimesh2 PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include/)
