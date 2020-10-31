@@ -131,7 +131,7 @@ set( CONF "
 #define OPENSSL_NO_RFC3779
 #define OPENSSL_NO_EC_NISTP_64_GCC_128
 ${CONF}" )
-file( WRITE ${C}/opensslconf.h.cmake "${CONF}" )
+file( WRITE ${CMAKE_CURRENT_BINARY_DIR}/opensslconf.h.cmake "${CONF}" )
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/opensslconf.h.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/include/openssl/opensslconf.h )
