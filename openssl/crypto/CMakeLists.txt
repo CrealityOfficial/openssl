@@ -294,6 +294,3 @@ else()
   endif()
 endif()
 
-set_target_properties( crypto PROPERTIES
-  VERSION "${LIB_VERSION}" SOVERSION "${LIB_SOVERSION}" )
-
