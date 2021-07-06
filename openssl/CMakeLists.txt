@@ -133,4 +133,6 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/opensslconf.h.cmake
 add_subdirectory(crypto)
 add_subdirectory(ssl)
 
-INSTALL(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION include/openssl/ FILES_MATCHING PATTERN "*.h")
+if(CC_INSTALL_OPENSSL)
+	INSTALL(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION include/openssl/ FILES_MATCHING PATTERN "*.h")
+endif()
