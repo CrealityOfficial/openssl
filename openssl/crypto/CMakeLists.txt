@@ -281,7 +281,7 @@ endif()
 #add_library( crypto ${LIBSRC} ${OBJECTS_SRC} )
 __add_real_target(crypto lib SOURCE ${LIBSRC} ${OBJECTS_SRC})
 
-target_include_directories( crypto PUBLIC ${CMAKE_CURRENT_BINARY_DIR}}/../include )
+target_include_directories( crypto PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/../include )
 
 if( WIN32 AND NOT CYGWIN )
   target_link_libraries( crypto ws2_32 crypt32 )
