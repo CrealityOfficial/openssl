@@ -48,4 +48,4 @@ __add_real_target(ssl lib SOURCE ${LIBSRC})
 
 target_include_directories( ssl PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/../include )
 
-target_link_libraries( ssl crypto )
+target_link_libraries( ssl PRIVATE crypto )
