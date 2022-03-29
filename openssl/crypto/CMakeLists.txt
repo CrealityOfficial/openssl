@@ -278,19 +278,18 @@ else()
   add_submodule ( . threads_pthread.c )
 endif()
 
-#add_library( crypto ${LIBSRC} ${OBJECTS_SRC} )
-__add_real_target(crypto lib SOURCE ${LIBSRC} ${OBJECTS_SRC})
-
-target_include_directories( crypto PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/../include )
-
+set(LIBS)
 if( WIN32 AND NOT CYGWIN )
-  target_link_libraries( crypto PRIVATE ws2_32 crypt32 )
+	list(APPEND LIBS ws2_32 crypt32)
 else()
   if( Threads_FOUND )
-	  target_link_libraries( crypto PRIVATE ${CMAKE_THREAD_LIBS_INIT} )
+	  list(APPEND LIBS ${CMAKE_THREAD_LIBS_INIT})
   endif()
   if( DSO_DLFCN AND HAVE_DLFCN_H )
-    target_link_libraries( crypto dl )
+	  list(APPEND LIBS dl)
   endif()
 endif()
 
+__add_real_target(crypto lib SOURCE ${LIBSRC} ${OBJECTS_SRC} LIB ${LIBS})
+
+target_include_directories( crypto PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/../include )

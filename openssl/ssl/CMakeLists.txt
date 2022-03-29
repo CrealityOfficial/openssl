@@ -44,8 +44,7 @@ include_directories( BEFORE SYSTEM
 )
 
 #add_library( ssl ${LIBSRC} )
-__add_real_target(ssl lib SOURCE ${LIBSRC})
+__add_real_target(ssl lib SOURCE ${LIBSRC} LIB crypto)
 
 target_include_directories( ssl PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/../include )
 
-target_link_libraries( ssl PRIVATE crypto )
