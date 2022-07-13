@@ -42,9 +42,13 @@ set( LIBSRC
 include_directories( BEFORE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/../ # e_os.h
 )
-
+if( BUILD_SHARED_LIBS )
+  __add_real_target(ssl dll SOURCE ${LIBSRC} ${OBJECTS_SRC} LIB ${LIBS})
+  install(TARGETS ssl LIBRARY DESTINATION lib)
+else()
+  __add_real_target(ssl lib SOURCE ${LIBSRC} ${OBJECTS_SRC} LIB ${LIBS})
+  install(TARGETS ssl ARCHIVE DESTINATION lib)
+endif()
 #add_library( ssl ${LIBSRC} )
-__add_real_target(ssl lib SOURCE ${LIBSRC} LIB crypto)
-
 target_include_directories( ssl PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/../include )
 
